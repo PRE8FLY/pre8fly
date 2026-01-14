@@ -174,28 +174,25 @@
 <a href="https://t.me/Pre8Fly" class="bottom-nav">ORDER VIA TELEGRAM</a>
 
 <script>
-  // 💡 Update your product list here
+  // 💡 以后更新货物，只需在这里增减 { } 里的内容
+  // 我已经为你预留了 50 个位置，你只需要修改里面的 name, type 和 img 即可
   const inventory = [
-    { name: "Premium Indoor Strain A", type: "indoor", img: "https://via.placeholder.com/400" },
-    { name: "Sun-Grown Outdoor B", type: "outdoor", img: "https://via.placeholder.com/400" },
-    { name: "Indoor Exotic C", type: "indoor", img: "https://via.placeholder.com/400" },
-    { name: "Outdoor Budget D", type: "outdoor", img: "https://via.placeholder.com/400" },
+    { name: "Indoor Strain #1", type: "indoor", img: "https://via.placeholder.com/400" },
+    { name: "Outdoor Strain #1", type: "outdoor", img: "https://via.placeholder.com/400" },
+    { name: "Indoor Strain #2", type: "indoor", img: "https://via.placeholder.com/400" },
+    { name: "Outdoor Strain #2", type: "outdoor", img: "https://via.placeholder.com/400" },
+    { name: "Indoor Strain #3", type: "indoor", img: "https://via.placeholder.com/400" },
+    { name: "Outdoor Strain #3", type: "outdoor", img: "https://via.placeholder.com/400" },
+    // ... 你可以按照这个格式一直复制下去，直到 50 个或更多
+    // 为了节省空间，我在这里展示前几个，你可以直接在代码里粘贴更多行
   ];
 
-  function renderProducts(filter = 'all') {
-    const grid = document.getElementById('itemGrid');
-    grid.innerHTML = '';
-    const filtered = filter === 'all' ? inventory : inventory.filter(item => item.type === filter);
-    filtered.forEach(item => {
-      grid.innerHTML += `
-        <div class="product-card">
-          <img src="${item.img}" class="product-img">
-          <div class="product-info">
-            <p class="product-name">${item.name}</p>
-            <div class="product-type">${item.type}</div>
-          </div>
-        </div>
-      `;
+  // 技巧：如果你想快速生成 50 个测试位，可以这样写：
+  for(let i = 5; i <= 50; i++) {
+    inventory.push({
+      name: (i % 2 === 0 ? "Premium Indoor " : "Sun-Grown Outdoor ") + "#" + i,
+      type: i % 2 === 0 ? "indoor" : "outdoor",
+      img: "https://via.placeholder.com/400"
     });
   }
 
