@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-<title>PRE8FLY · Selection</title>
+<title>PRE8FLY · Premium Selection</title>
 
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -37,7 +37,7 @@
     z-index: 100;
   }
 
-  /* 分类切换器 */
+  /* Category Switcher */
   .categories {
     display: flex;
     padding: 15px;
@@ -51,10 +51,12 @@
     background: var(--card-bg);
     border: 1px solid #333;
     border-radius: 12px;
-    font-size: 1rem;
+    font-size: 0.9rem;
     color: #888;
     transition: 0.3s;
     cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
   }
   .category-pill.active {
     background: var(--gold);
@@ -72,6 +74,7 @@
     gap: 15px;
   }
 
+  /* Card Animation */
   .product-card {
     background: var(--card-bg);
     border-radius: 15px;
@@ -89,6 +92,7 @@
   .product-name { font-size: 0.9rem; color: #eee; margin: 0; font-weight: 500; }
   .product-type { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; margin-top: 4px; letter-spacing: 1px; }
 
+  /* Floating Bottom Button */
   .bottom-nav {
     position: fixed;
     bottom: 30px;
@@ -104,9 +108,10 @@
     text-decoration: none;
     z-index: 1000;
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    letter-spacing: 1px;
   }
 
-  /* ✨ 新增：引导气泡样式 */
+  /* PWA Guide Popup */
   .pwa-guide {
     position: fixed;
     bottom: 110px;
@@ -148,7 +153,7 @@
 
 <div id="pwaGuide" class="pwa-guide">
   <span class="pwa-guide-close" onclick="this.parentElement.style.display='none'">×</span>
-  💡 点击下方“分享”按钮选择<strong>“添加到主屏幕”</strong>，即可像 App 一样使用 PRE8FLY！
+  💡 Tap the <strong>Share</strong> button and select <strong>"Add to Home Screen"</strong> to use PRE8FLY as an App!
 </div>
 
 <header>
@@ -166,11 +171,12 @@
   <div class="product-grid" id="itemGrid"></div>
 </div>
 
-<a href="https://t.me/Pre8Fly" class="bottom-nav">ORDER ON TELEGRAM</a>
+<a href="https://t.me/Pre8Fly" class="bottom-nav">ORDER VIA TELEGRAM</a>
 
 <script>
+  // 💡 Update your product list here
   const inventory = [
-    { name: "Premium Indoor A", type: "indoor", img: "https://via.placeholder.com/400" },
+    { name: "Premium Indoor Strain A", type: "indoor", img: "https://via.placeholder.com/400" },
     { name: "Sun-Grown Outdoor B", type: "outdoor", img: "https://via.placeholder.com/400" },
     { name: "Indoor Exotic C", type: "indoor", img: "https://via.placeholder.com/400" },
     { name: "Outdoor Budget D", type: "outdoor", img: "https://via.placeholder.com/400" },
@@ -202,7 +208,6 @@
     renderProducts(type);
   }
 
-  // ✨ 新增：智能引导逻辑
   function handlePwaGuide() {
     const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
     const isInWebAppMode = ('standalone' in window.navigator) && (window.navigator.standalone);
@@ -212,7 +217,7 @@
   }
 
   renderProducts('all');
-  setTimeout(handlePwaGuide, 3000); // 页面加载3秒后检测并显示提示
+  setTimeout(handlePwaGuide, 3000);
 </script>
 
 </body>
