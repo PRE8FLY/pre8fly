@@ -2,205 +2,178 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>PRE8FLY · Join Telegram Group for Exclusive Deals</title>
-<meta name="description" content="Join the PRE8FLY Telegram group to get exclusive weekly deals on premium cannabis products — flowers, pre-rolls, edibles, concentrates, and vapes.">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>PRE8FLY · Selection</title>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png">
+
 <style>
   :root {
-    --gold1: #d4af37;
-    --gold2: #ffecb3;
-    --bg-dark: #0a0a0a;
-    --bg-darker: #000000;
+    --gold: #d4af37;
+    --dark: #0a0a0a;
+    --card-bg: #161616;
   }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-    background: linear-gradient(180deg, var(--bg-dark), var(--bg-darker));
+    font-family: -apple-system, system-ui, sans-serif;
+    background-color: var(--dark);
     color: #fff;
-    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
   }
+
+  .status-bar { height: 44px; background: var(--dark); }
+
   header {
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     position: sticky;
     top: 0;
-    background: rgba(0,0,0,0.8);
-    backdrop-filter: blur(6px);
-    border-bottom: 1px solid rgba(212,175,55,0.3);
-    padding: 12px 18px;
-    text-align: right;
-    z-index: 10;
+    background: rgba(10,10,10,0.9);
+    backdrop-filter: blur(15px);
+    z-index: 100;
   }
-  .container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-    position: relative;
-    z-index: 2;
+
+  /* 分类切换器 */
+  .categories {
+    display: flex;
+    padding: 15px;
+    gap: 12px;
+    justify-content: center;
   }
-  h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: var(--gold1);
-    position: relative;
-    overflow: hidden;
-  }
-  h1::after, .btn-primary::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -75%;
-    width: 50%;
-    height: 100%;
-    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.6) 50%, rgba(255,255,255,0) 100%);
-    transform: skewX(-20deg);
-    animation: shine 3s infinite;
-  }
-  @keyframes shine {
-    0% { left: -75%; }
-    100% { left: 125%; }
-  }
-  p {
-    color: #ccc;
-    font-size: 1.1rem;
-  }
-  .btn-primary {
-    display: inline-block;
-    background: linear-gradient(135deg, var(--gold1), var(--gold2));
-    color: #000;
-    padding: 12px 18px;
-    border-radius: 10px;
-    font-weight: bold;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    margin: 5px 5px;
-  }
-  @media (max-width: 600px) {
-    .btn-primary {
-      padding: 10px 14px;
-      margin: 4px 3px;
-      font-size: 0.9rem;
-    }
-  }
-  .card {
-    background: rgba(255,255,255,0.05);
-    border: 1px solid rgba(212,175,55,0.3);
-    border-radius: 14px;
-    padding: 16px;
-    box-shadow: 0 0 15px rgba(212,175,55,0.2);
-  }
-  .grid {
-    display: grid;
-    gap: 16px;
-  }
-  @media(min-width: 700px) {
-    .grid { grid-template-columns: repeat(3, 1fr); }
-  }
-  footer {
-    border-top: 1px solid rgba(212,175,55,0.3);
-    padding: 20px;
-    color: #ccc;
+  .category-pill {
+    flex: 1;
     text-align: center;
-    background: rgba(0,0,0,0.8);
+    padding: 12px;
+    background: var(--card-bg);
+    border: 1px solid #333;
+    border-radius: 12px;
+    font-size: 1rem;
+    color: #888;
+    transition: 0.3s;
+    cursor: pointer;
   }
-  .divider {
-    border-top: 1px solid rgba(212,175,55,0.3);
-    margin: 40px 0;
+  .category-pill.active {
+    background: var(--gold);
+    color: #000;
+    border-color: var(--gold);
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
   }
-  .particles {
-    position: fixed;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    z-index: 0;
+
+  .main-content { padding: 0 15px 120px; }
+
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  /* 商品卡片动画 */
+  .product-card {
+    background: var(--card-bg);
+    border-radius: 15px;
     overflow: hidden;
+    border: 1px solid #222;
+    animation: fadeIn 0.4s ease-out;
   }
-  .particle {
-    position: absolute;
-    background: var(--gold1);
-    border-radius: 50%;
-    opacity: 0.8;
-    animation: float 10s infinite;
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
   }
-  @keyframes float {
-    from { transform: translateY(100vh) scale(0.5); opacity: 0.8; }
-    to { transform: translateY(-10vh) scale(1); opacity: 0; }
+
+  .product-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+  .product-info { padding: 12px; }
+  .product-name { font-size: 0.9rem; color: #eee; margin: 0; font-weight: 500; }
+  .product-type { font-size: 0.7rem; color: var(--gold); text-transform: uppercase; margin-top: 4px; letter-spacing: 1px; }
+
+  .bottom-nav {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 85%;
+    background: linear-gradient(135deg, var(--gold), #ffecb3);
+    color: #000;
+    padding: 16px;
+    border-radius: 15px;
+    text-align: center;
+    font-weight: 800;
+    text-decoration: none;
+    z-index: 1000;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.6);
   }
 </style>
 </head>
 <body>
 
-<div class="particles"></div>
+<div class="status-bar"></div>
 
 <header>
-  <img src="https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png" alt="PRE8FLY" style="width:60px; vertical-align:middle; filter: drop-shadow(0 0 6px var(--gold1));">
+  <div style="font-weight: 900; font-size: 1.2rem; color: var(--gold);">PRE8FLY</div>
+  <img src="https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png" style="height:30px;">
 </header>
 
-<div class="container">
-  <div style="text-align:center;">
-    <img src="https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png" alt="PRE8FLY" style="width:120px; filter: drop-shadow(0 0 10px var(--gold1));">
-    <h1>Join Telegram Group for Exclusive Deals</h1>
-    <p>Flower · Pre-rolls · Edibles · Concentrates · Vapes</p>
-    <div>
-      <a class="btn-primary" href="https://t.me/Pre8Fly" target="_blank" rel="noopener">Join Telegram Group</a>
-      <a class="btn-primary" href="https://www.instagram.com/pre8fly?igsh=ZmRuMzNtdnUwYml0&utm_source=qr" target="_blank" rel="noopener">Follow Instagram</a>
-    </div>
-  </div>
-
-  <div class="divider"></div>
-
-  <section>
-    <h2 style="color:var(--gold1);">Best Sellers</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Pre-rolls</h3>
-        <p>Grab & go, multiple flavors. Weekly discount codes in Telegram.</p>
-      </div>
-      <div class="card">
-        <h3>Edibles</h3>
-        <p>Gummies, chocolates, and drinks. Be the first to know new drops on Instagram.</p>
-      </div>
-      <div class="card">
-        <h3>Vapes</h3>
-        <p>High purity, smooth hits. VIP pricing available only in Telegram group.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="divider"></div>
-
-  <section>
-    <h2 style="color:var(--gold1);">Store Info</h2>
-    <div class="grid" style="gap:20px;">
-      <div class="card">
-        <h3>Hours</h3>
-        <p>Mon – Fri: 10:00 AM – 2:00 PM (California Time)</p>
-        <p>All orders are packed before 2:00 PM same day.</p>
-      </div>
-      <div class="card" style="grid-column: span 2;">
-        <div style="position:relative;padding-bottom:56%;height:0;overflow:hidden;border-radius:12px;">
-          <iframe src="https://www.google.com/maps?q=Los+Angeles&output=embed" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;border-radius:12px;" loading="lazy"></iframe>
-        </div>
-      </div>
-    </div>
-  </section>
+<div class="categories">
+  <div class="category-pill active" onclick="filterList('all')">All</div>
+  <div class="category-pill" onclick="filterList('indoor')">Indoor</div>
+  <div class="category-pill" onclick="filterList('outdoor')">Outdoor</div>
 </div>
 
-<footer>
-  <a class="btn-primary" href="https://t.me/Pre8Fly" target="_blank" rel="noopener">Join Telegram Group</a>
-  <a class="btn-primary" href="https://www.instagram.com/pre8fly?igsh=ZmRuMzNtdnUwYml0&utm_source=qr" target="_blank" rel="noopener">Follow Instagram</a>
-  <p>© <span id="year"></span> PRE8FLY</p>
-</footer>
+<div class="main-content">
+  <div class="product-grid" id="itemGrid">
+    </div>
+</div>
+
+<a href="https://t.me/Pre8Fly" class="bottom-nav">ORDER ON TELEGRAM</a>
 
 <script>
-  const particlesContainer = document.querySelector('.particles');
-  for(let i=0; i<25; i++){
-    const p = document.createElement('div');
-    p.classList.add('particle');
-    p.style.width = p.style.height = Math.random()*4+2+'px';
-    p.style.left = Math.random()*100+'%';
-    p.style.animationDuration = 5+Math.random()*10+'s';
-    particlesContainer.appendChild(p);
+  // 💡 更新数据时，记得加上 type 属性 ('indoor' 或 'outdoor')
+  const inventory = [
+    { name: "Premium Indoor A", type: "indoor", img: "https://via.placeholder.com/400" },
+    { name: "Sun-Grown Outdoor B", type: "outdoor", img: "https://via.placeholder.com/400" },
+    { name: "Indoor Exotic C", type: "indoor", img: "https://via.placeholder.com/400" },
+    { name: "Outdoor Budget D", type: "outdoor", img: "https://via.placeholder.com/400" },
+  ];
+
+  function renderProducts(filter = 'all') {
+    const grid = document.getElementById('itemGrid');
+    grid.innerHTML = ''; // 清空当前列表
+
+    const filtered = filter === 'all' 
+      ? inventory 
+      : inventory.filter(item => item.type === filter);
+
+    filtered.forEach(item => {
+      grid.innerHTML += `
+        <div class="product-card">
+          <img src="${item.img}" class="product-img">
+          <div class="product-info">
+            <p class="product-name">${item.name}</p>
+            <div class="product-type">${item.type}</div>
+          </div>
+        </div>
+      `;
+    });
   }
-  document.getElementById('year').textContent = new Date().getFullYear();
+
+  function filterList(type) {
+    // 切换按钮高亮状态
+    document.querySelectorAll('.category-pill').forEach(btn => {
+      btn.classList.remove('active');
+      if(btn.innerText.toLowerCase() === type) btn.classList.add('active');
+      if(type === 'all' && btn.innerText === 'All') btn.classList.add('active');
+    });
+    
+    // 执行过滤渲染
+    renderProducts(type);
+  }
+
+  // 页面加载时显示全部
+  renderProducts('all');
 </script>
 
 </body>
