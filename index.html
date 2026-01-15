@@ -48,35 +48,59 @@
     // 你可以继续复制上面的行，增加更多商品
   ];
 
-  function renderProducts(filter = 'all') {const filtered = filter === 'all' ? inventory : inventory.filter(item => item.type === filter);
-    filtered.forEach(item => {
-      grid.innerHTML += `
-        <div class="product-card">
-          <img src="${item.img}" class="product-img">
-          <div class="product-info">
-            <p class="product-name">${item.name}</p>
-            <p class="product-price">${item.price}</p>
-          </div>
-        </div>`;
-    });
-  }
+  function renderProducts(filter = 'all') {
+    const grid = document.getElementById('itemGrid');
+    grid.innerHTML = '';
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+<title>PRE8FLY · Selection</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="apple-touch-icon" href="https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png">
+<style>
+  :root { --gold: #d4af37; --dark: #0a0a0a; --card-bg: #161616; }
+  body { margin: 0; font-family: -apple-system, system-ui, sans-serif; background-color: var(--dark); color: #fff; -webkit-tap-highlight-color: transparent; }
+  .status-bar { height: 44px; }
+  header { padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; background: rgba(10,10,10,0.9); backdrop-filter: blur(15px); z-index: 100; }
+  .categories { display: flex; padding: 15px; gap: 12px; }
+  .category-pill { flex: 1; text-align: center; padding: 12px; background: var(--card-bg); border: 1px solid #333; border-radius: 12px; font-size: 0.9rem; color: #888; cursor: pointer; text-transform: uppercase; }
+  .category-pill.active { background: var(--gold); color: #000; font-weight: bold; }
+  .main-content { padding: 0 15px 120px; }
+  .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+  .product-card { background: var(--card-bg); border-radius: 15px; overflow: hidden; border: 1px solid #222; }
+  .product-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; background: #222; }
+  .product-info { padding: 12px; }
+  .product-name { font-size: 0.9rem; color: #eee; margin: 0; font-weight: 500; }
+  .product-price { color: var(--gold); font-weight: bold; font-size: 1.1rem; margin-top: 5px; }
+  .bottom-nav { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); width: 85%; background: linear-gradient(135deg, var(--gold), #ffecb3); color: #000; padding: 16px; border-radius: 15px; text-align: center; font-weight: 800; text-decoration: none; z-index: 1000; }
+  .pwa-guide { position: fixed; bottom: 110px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #000; padding: 12px 18px; border-radius: 12px; font-size: 0.85rem; font-weight: bold; z-index: 9999; width: 80%; display: none; animation: bounce 2s infinite; }
+  @keyframes bounce { 0%, 20%, 50%, 80%, 100% {transform: translateX(-50%) translateY(0);} 40% {transform: translateX(-50%) translateY(-10px);} }
+</style>
+</head>
+<body>
+<div class="status-bar"></div>
+<div id="pwaGuide" class="pwa-guide"><span style="float:right;" onclick="this.parentElement.style.display='none'">×</span>💡 Tap <strong>Share</strong> and <strong>"Add to Home Screen"</strong>!</div>
+<header><div style="font-weight: 900; font-size: 1.2rem; color: var(--gold);">PRE8FLY</div><img src="https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png" style="height:30px;"></header>
+<div class="categories">
+  <div class="category-pill active" onclick="filterList('all')">All</div>
+  <div class="category-pill" onclick="filterList('indoor')">Indoor</div>
+  <div class="category-pill" onclick="filterList('outdoor')">Outdoor</div>
+</div>
+<div class="main-content"><div class="product-grid" id="itemGrid"></div></div>
+<a href="https://t.me/Pre8Fly" class="bottom-nav">ORDER VIA TELEGRAM</a>
 
-  function filterList(type) {
-    document.querySelectorAll('.category-pill').forEach(btn => {
-      btn.classList.remove('active');
-      if(btn.innerText.toLowerCase() === type) btn.classList.add('active');
-    });
-    renderProducts(type);
-  }
+<script>
+  // 💡 【在此处修改商品信息】最简单的管理方式
+  const inventory = [
+    { name: "Premium Indoor OG", price: "$50", type: "indoor", img: "https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png" },
+    { name: "Sun-Grown Outdoor", price: "$30", type: "outdoor", img: "https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png" },
+    { name: "Indoor Exotic Gelato", price: "$65", type: "indoor", img: "https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png" },
+    // 你可以继续复制上面的行，增加更多商品
+  ];
 
-  window.onload = () => {
-    renderProducts('all');
-    setTimeout(() => {
-      if (window.navigator.standalone === false) document.getElementById('pwaGuide').style.display = 'block';
-    }, 3000);
-  };
-</script>
-</body>
-</html>
+  function renderProducts(filter = 'all') {
     const grid = document.getElementById('itemGrid');
     grid.innerHTML = '';
