@@ -57,15 +57,55 @@
 <a href="https://t.me/Pre8Fly" class="bottom-nav">ORDER VIA TELEGRAM</a>
 
 <script>
-  // 1. 生成 50 个商品数据
-  const inventory = [];
-  for(let i = 1; i <= 50; i++) {
-    inventory.push({name: (i % 2 === 0 ? "Indoor Selection " : "Outdoor Selection ") + "#" + i,
-      type: i % 2 === 0 ? "indoor" : "outdoor",
-      img: "https://i.ibb.co/27WnHFpr/12-E57853-09-C3-436-E-9544-C87-F18-CB3908.png"
+  // 💡 在这里直接改名字、价格、分类和图片链接即可
+  const inventory = [
+    { name: "Indoor Premium A1", price: "$50", type: "indoor", img: "https://i.ibb.co/27WnHFpr/logo.png" },
+    { name: "Outdoor Sun-Grown B1", price: "$30", type: "outdoor", img: "https://i.ibb.co/27WnHFpr/logo.png" },
+    { name: "Exotic Indoor C1", price: "$65", type: "indoor", img: "https://i.ibb.co/27WnHFpr/logo.png" },
+    // 你可以继续按这个格式复制下去
+  ];
+
+  function renderProducts(filter = 'all') {
+    const grid = document.getElementById('itemGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    
+    const filtered = (filter === 'all') 
+      ? inventory 
+      : inventory.filter(item => item.type.toLowerCase() === filter.toLowerCase());
+
+    filtered.forEach(item => {
+      grid.innerHTML += `
+        <div class="product-card">
+          <img src="${item.img}" class="product-img">
+          <div class="product-info">
+            <p class="product-name">${item.name}</p>
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-top:5px;">
+              <span style="color:var(--gold); font-weight:bold; font-size:1.1rem;">${item.price}</span>
+              <span class="product-type" style="margin:0; font-size:0.65rem;">${item.type}</span>
+            </div>
+          </div>
+        </div>`;
     });
   }
 
+  function filterList(type) {
+    document.querySelectorAll('.category-pill').forEach(btn => {
+      btn.classList.remove('active');
+      if(btn.innerText.trim().toLowerCase() === type.toLowerCase()) btn.classList.add('active');
+    });
+    renderProducts(type);
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts('all');
+    setTimeout(() => {
+      const isIos = /iphone|ipad|ipod/.test(window.navigator.userAgent.toLowerCase());
+      const isInWebAppMode = (window.navigator.standalone === true);
+      if (isIos && !isInWebAppMode) document.getElementById('pwaGuide').style.display = 'block';
+    }, 3000);
+  });
+</script>
   // 2. 核心渲染函数：负责把数据变成页面上的卡片
   function renderProducts(filter = 'all') {
     const grid = document.getElementById('itemGrid');
